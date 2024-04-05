@@ -23,7 +23,10 @@ public class TasksService {
 	public Tasks findById(Long id) {
 		Optional<Tasks> obj = repository.findById(id);
 		return obj.get();
-		
+	}
+	
+	public Tasks insert(Tasks obj) {
+		return repository.save(obj);
 	}
 }
 
