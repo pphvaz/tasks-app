@@ -3,6 +3,8 @@ package com.portifolio.tasks.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.portifolio.tasks.entities.enums.Status;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,15 +21,16 @@ public class Tasks implements Serializable {
 	private Long id;
 	private String title;
 	private String description;
-	// private Status status;
+	private Integer status;
 	
 	public Tasks() {}
 
-	public Tasks(Long id, String title, String description) {
+	public Tasks(Long id, String title, String description, Status status) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
+		setStatus(status);
 	}
 
 	public Long getId() {
@@ -52,6 +55,16 @@ public class Tasks implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Status getStatus() {
+		return Status.valueOf(status);
+	}
+
+	public void setStatus(Status status) {
+		if (status != null) {			
+			this.status = status.getCode();
+		}
 	}
 
 	@Override
