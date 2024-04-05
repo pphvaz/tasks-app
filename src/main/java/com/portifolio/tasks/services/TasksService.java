@@ -28,5 +28,36 @@ public class TasksService {
 	public Tasks insert(Tasks obj) {
 		return repository.save(obj);
 	}
+	
+	public void delete(Long id) {
+		repository.deleteById(id);
+	}
+	
+	public Tasks update(Long id, Tasks obj) {
+		Tasks entity = repository.getReferenceById(id);
+		updateData(entity, obj);
+		return repository.save(entity);
+	}
+	
+	public Tasks updateStatus(Long id, Tasks obj) {
+		Tasks entity = repository.getReferenceById(id);
+		updateStatus(entity, obj);
+		return repository.save(entity);
+	}
+
+	private void updateStatus(Tasks entity, Tasks obj) {
+		entity.setStatus(obj.getStatus());
+	}
+
+	private void updateData(Tasks entity, Tasks obj) {
+		
+		if (obj.getTitle() != null) {
+			entity.setTitle(obj.getTitle());
+		}
+		
+		if (obj.getDescription() != null) {
+			entity.setDescription(obj.getDescription());
+		}
+	}
 }
 
