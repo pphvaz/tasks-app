@@ -12,7 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table
+@Table(name="tb_user")
 public class Tasks implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -83,4 +83,8 @@ public class Tasks implements Serializable {
 		Tasks other = (Tasks) obj;
 		return Objects.equals(id, other.id);
 	}
+
+	
+	
+
 }
